@@ -1,9 +1,12 @@
 import express from 'express'
 
 import { generateId } from './utils.js'
+import { unknownEndpoint, requestLogger } from './middleware.js'
+
 
 const app = express()
 app.use(express.json())
+app.use(requestLogger)
 
 
 let persons = [
@@ -89,6 +92,9 @@ app.post('/api/persons', (req, res) => {
   persons = persons.concat(person)
   res.json(person)
 })
+
+
+app.use(unknownEndpoint)
 
 
 const PORT = 3001
