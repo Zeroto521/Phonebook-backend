@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from 'express'
 import morgan from 'morgan'
 
@@ -16,6 +17,7 @@ app.use(morgan(function (tokens, req, res) {
     JSON.stringify(req.body)
   ].join(' ')
 }))
+app.use(cors())
 
 
 let persons = [
@@ -106,7 +108,7 @@ app.post('/api/persons', (req, res) => {
 app.use(unknownEndpoint)
 
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
