@@ -5,6 +5,7 @@
   "repository": "https://github.com/Zeroto521/Phonebook-backend.git",
   "author": "Zero <Zeroto521@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
