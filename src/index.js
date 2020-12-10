@@ -1,12 +1,12 @@
 import express from 'express'
+import morgan from 'morgan'
 
 import { generateId } from './utils.js'
-import { unknownEndpoint, requestLogger } from './middleware.js'
-
+import { unknownEndpoint } from './middleware.js'
 
 const app = express()
 app.use(express.json())
-app.use(requestLogger)
+app.use(morgan('tiny'))
 
 
 let persons = [
