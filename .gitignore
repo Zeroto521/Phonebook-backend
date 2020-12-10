@@ -4,4 +4,7 @@
 
 # node
 node_modules
+*/*.rest
+
+
 .log
