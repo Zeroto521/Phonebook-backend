@@ -44,10 +44,6 @@ let persons = [
   }
 ]
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
-})
-
 app.get('/api/info', (req, res) => {
   res.send(
     `Phonebook has info for ${persons.length} people <br /> ${Date()}`
