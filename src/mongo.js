@@ -1,8 +1,12 @@
+import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
-const password = process.env.MONGO_PASSWORD
+dotenv.config()
 
-const url = `mongodb+srv://fullstack:${password}@cluster0-ostce.mongodb.net/phonebook-app?retryWrites=true`
+const password = process.env.MONGODB_PASSWORD
+
+const url = `mongodb+srv://fullstack:${password}@cluster0.qexng.mongodb.net/phonebook-app?retryWrites=true&w=majority`
+
 
 mongoose.connect(url, {
   useNewUrlParser: true,
@@ -16,20 +20,20 @@ const noteSchema = new mongoose.Schema({
   number: String
 })
 
-const Phonebook = mongoose.model('Phonebook', noteSchema)
+const Person = mongoose.model('Person', noteSchema)
 
-const phonebook = new Phonebook({
+const person = new Person({
   name: 'HTML',
   number: '00000000000'
 })
 
-phonebook.save().then(result => {
-  console.log('phonebook saved!')
-  mongoose.connection.close()
-})
+// person.save().then(result => {
+//   console.log('phonebook saved!')
+//   mongoose.connection.close()
+// })
 
 
-Phonebook.find({}).then(result => {
+Person.find({}).then(result => {
   result.forEach(p => {
     console.log(p)
   })
