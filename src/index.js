@@ -6,6 +6,7 @@ import { generateId } from './utils.js'
 import { unknownEndpoint } from './middleware.js'
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(morgan(function (tokens, req, res) {
   return [
@@ -17,8 +18,7 @@ app.use(morgan(function (tokens, req, res) {
     JSON.stringify(req.body)
   ].join(' ')
 }))
-app.use(cors())
-app.use(express.static('./build'))
+app.use(express.static('build'))
 
 
 let persons = [
