@@ -15,6 +15,12 @@ app.use(morgan('tiny'))
 app.use(express.static('build'))
 
 
+app.get('/api/info', (req, res) => {
+  Person.find({}).then(persons => {
+    res.send(`Phonebook has info for ${persons.length} people <br /> ${Date()}`)
+  })
+})
+
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(persons => {
     res.json(persons)
@@ -37,7 +43,18 @@ app.delete('/api/persons/:id', (req, res, next) => {
   }).catch(error => next(error))
 })
 
-app.put('/api/notes/:id', (req, res, next) => {
+
+app.get('/api/persons/query/:name', (req, res, next) => {
+  const name = req.params.name
+
+  Person.findOne({ "name": name })
+    .then(result => {
+      res.json(result)
+    }).catch(error => next(error))
+})
+
+
+app.put('/api/persons/:id', (req, res, next) => {
   const body = req.body
 
   const person = {
