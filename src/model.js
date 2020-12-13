@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
 dotenv.config()
+
 const url = process.env.MONGODB_URL
 
 mongoose.connect(url, {
@@ -10,7 +11,7 @@ mongoose.connect(url, {
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
-}).then(result => {
+}).then(() => {
   console.log('connected to MongoDB')
 }).catch((error) => {
   console.log('error connecting to MongoDB:', error.message)
