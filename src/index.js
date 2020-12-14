@@ -72,10 +72,10 @@ app.post('/api/persons', (req, res, next) => {
   const body = req.body
 
   if (body.name === undefined) {
-    return req.status(400).json({ error: 'name missing' })
+    return res.status(400).json({ error: 'name missing' })
   }
   if (body.number === undefined) {
-    return req.status(400).json({ error: 'number missing' })
+    return res.status(400).json({ error: 'number missing' })
   }
 
   const person = new Person({
